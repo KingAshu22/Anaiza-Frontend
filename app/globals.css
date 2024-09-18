@@ -119,7 +119,7 @@ body,
 
 .scroll-content {
   display: flex;
-  animation: scroll 15s linear infinite;
+  /* animation: scroll 15s linear infinite; */
 }
 
 .scroll-container::-webkit-scrollbar {

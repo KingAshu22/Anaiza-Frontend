@@ -11,20 +11,42 @@ const Collections = async () => {
       {!collections || collections.length === 0 ? (
         <p className="text-body-bold">No collections found</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 items-center justify-center">
-          {collections.map((collection: CollectionType) => (
-            <Link href={`/collections/${collection._id}`} key={collection._id}>
-              <Image
+        <div className="scroll-container flex">
+          <div className="scroll-content flex">
+            {collections.map((collection: CollectionType) => (
+              <Link
+                href={`/collections/${collection._id}`}
                 key={collection._id}
-                src={collection.image}
-                alt={collection.title}
-                width={100}
-                height={100}
-                className="rounded-full cursor-pointer"
-              />
-              <p className="text-center font-bold mt-1">{collection.title}</p>
-            </Link>
-          ))}
+                className="flex-shrink-0 mx-2"
+              >
+                <Image
+                  src={collection.image}
+                  alt={collection.title}
+                  width={200}
+                  height={200}
+                  className="rounded-full cursor-pointer"
+                />
+                {/* <p className="text-center font-bold mt-1">{collection.title}</p> */}
+              </Link>
+            ))}
+            {/* Duplicating collections for seamless infinite scroll */}
+            {collections.map((collection: CollectionType) => (
+              <Link
+                href={`/collections/${collection._id}`}
+                key={`${collection._id}-duplicate`}
+                className="flex-shrink-0 mx-2"
+              >
+                <Image
+                  src={collection.image}
+                  alt={collection.title}
+                  width={200}
+                  height={200}
+                  className="rounded-full cursor-pointer"
+                />
+                {/* <p className="text-center font-bold mt-1">{collection.title}</p> */}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
